@@ -1,6 +1,11 @@
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, RetrieveAPIView
 from .models import * 
 from .serializers.common import * 
+import requests
+from django.http import JsonResponse
+from django.conf import settings
+from dotenv import load_dotenv
+import os
 
 # ! LOCATIONS
 # GET ALL LOCATIONS/ CREATE LOCATION
@@ -37,3 +42,36 @@ class getPhraseByLocation(ListCreateAPIView):
     def get_queryset(self):
         location_id = self.kwargs['location_id']
         return Phrase.objects.filter(location_id=location_id) 
+
+def get_locations_by_coordinates(request):
+    load_dotenv()
+
+    latitude = request.GET.get('lat')
+    longitude = request.GET.get('long')
+
+    if not latitude or not longitude:
+        return JsonResponse({'error': 'Latitude and longitude are required.'}, status=400)
+    
+    foursquare_url = f"{os.getenv('FOUR_SQUARE_ENDPOINT')}?ll={latitude},{longitude}&radius=100"
+    headers = {
+        'Accept': 'application/json',
+        'authorization': os.getenv('FOUR_SQUARE_API_KEY')
+    }
+    response = requests.get(foursquare_url, headers=headers)
+
+    if response.status_code != 200:
+        return JsonResponse({'error': 'Error fetching data from FourSquare API'}, status=500)
+    
+    foursquare_data = response.json()
+    locations = Location.objects.all()
+
+    matching_locations = []
+    for item in foursquare_data['results']:
+        for category in item.get('categories', []):
+            for location in locations:
+                if category['name'] in location.categories:
+                    matching_locations.append(location.name)
+
+    return JsonResponse({'locations': matching_locations}, status=200)
+
+
