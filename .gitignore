@@ -10,6 +10,7 @@ __pycache__/
 db.sqlite3
 /media/
 *.mo
+*.py[cod]
 
 */migrations/__pycache__/
 */migrations/*.pyc
