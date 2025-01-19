@@ -26,6 +26,6 @@ urlpatterns = [
     path('phrases/', PhraseList.as_view()),
     path('phrase/<int:pk>/', PhraseById.as_view()),
     path('phrases/<int:pk>/', PhraseUpdateDestroy.as_view()),
-    path('location-phrases/<int:location_id>/', getPhraseByLocation.as_view()),
+    path('location-phrases/<str:location_name>/', getPhraseByLocation.as_view()),
     path('get_locations_by_coordinates/', get_locations_by_coordinates)
 ]

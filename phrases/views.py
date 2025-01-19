@@ -40,8 +40,8 @@ class getPhraseByLocation(ListCreateAPIView):
     serializer_class = PhraseSerializer
 
     def get_queryset(self):
-        location_id = self.kwargs['location_id']
-        return Phrase.objects.filter(location_id=location_id) 
+        location_name = self.kwargs['location_name']
+        return Phrase.objects.filter(location__name=location_name) 
 
 def get_locations_by_coordinates(request):
     load_dotenv()
