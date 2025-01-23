@@ -9,8 +9,13 @@ with open("phrases/data.json") as f:
     CATEGORY_CHOICES = json.load(f)
 
 def validate_categories(value):
-	if not all(item in CATEGORY_CHOICES for item in value):
-		raise ValidationError("Invalid category in array.")
+    if not all(item in CATEGORY_CHOICES for item in value):
+        raise ValidationError("Invalid category in array.")
+
+    existing_locations = Location.objects.filter(categories__overlap=value)
+    if existing_locations.exists():
+        raise ValidationError("One or more categories already assigned to another location")
+
 
 class Location(models.Model):
 	name = models.CharField(max_length=100)

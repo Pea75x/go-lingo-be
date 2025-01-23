@@ -72,6 +72,8 @@ def get_locations_by_coordinates(request):
                 if category['name'] in location.categories:
                     matching_locations.append(location.name)
 
+    matching_locations = list(set(matching_locations))
+
     return JsonResponse({'locations': matching_locations}, status=200)
 
 
