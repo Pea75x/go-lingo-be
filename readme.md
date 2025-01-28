@@ -73,3 +73,10 @@ Example of response when choosing coffee shop
     }
 ]
 ```
+
+### To do
+1. Create user authentication and login logic
+
+2. Add previous locations to the user model as a foreign key so that the user can practice previous phrases they have used
+
+3. Phrases currently include the english and spanish translations of a sentence as I dont know any more languages unfortunately, but I have created it to be able to add more language fields as the project grows
