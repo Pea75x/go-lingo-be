@@ -4,10 +4,13 @@
 
 - Python
 - Django
+- FourSquare API
 
 The aim of Go-Lingo is to provide the user with relevant phrases based on their location, Eg. If they are at a coffee shop they will be given useful phrases on how to order a coffee.
 
-You start off by providing coordinates which will then retrieve nearby places. I have achived this by using the FourSquare API. This will return a number of places, and each place has a category. I then go through each category and try to match the name with a location category in the database. I will then return the location name.
+<img src="./readme/locate-user.png" alt='locate user' width="300" />
+
+1. You start off by providing coordinates which will then retrieve nearby places. I have achived this by using the FourSquare API. This will return a number of places, and each place has a category.
 
 Example of place data returned from FourSquare
 ```json
@@ -26,6 +29,7 @@ Example of place data returned from FourSquare
     ]
 }
 ```
+2. I then go through each category and try to match the name with a location category in the database. I will then return the location name.
 
 Example of a Location in the database (The above data would match with cafe and return coffee shop)
 ```json
@@ -42,7 +46,8 @@ Example of a Location in the database (The above data would match with cafe and 
         "Pet Café",
         "Café",
         "Tea Room"
-]}
+    ]
+}
 ```
 Example of API response
 ```json
@@ -53,7 +58,9 @@ Example of API response
     ]
 }
 ```
-Once you return the locations the idea is that the user will click which location they would like phrases for. They will then call getPhraseByLocation(). This will return all phrases with the correct location.
+3. Once you return the locations the idea is that the user will click which location they would like phrases for. They will then call getPhraseByLocation(). This will return all phrases with the correct location.
+
+<img src="./readme/chose-location.png" alt='chose location' width="300" />
 
 Example of response when choosing coffee shop
 ```json
