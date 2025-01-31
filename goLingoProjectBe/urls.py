@@ -35,5 +35,6 @@ urlpatterns = [
     path('get_locations_by_coordinates/', get_locations_by_coordinates),
     path('register/', RegisterView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
-    path('token/refresh/', TokenRefreshView.as_view())
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('user/', CredentialsView.as_view())
 ]

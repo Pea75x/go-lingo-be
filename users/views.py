@@ -17,4 +17,8 @@ class RegisterView(APIView):
             return Response(UserSerializer(user).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class CredentialsView(APIView):
+    def get(self, request):
+        serializer = PublicUserSerializer(request.user)
+        return Response(serializer.data)
 

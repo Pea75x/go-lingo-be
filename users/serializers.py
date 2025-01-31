@@ -33,4 +33,9 @@ class UserSerializer(serializers.ModelSerializer):
         return User.objects.create(**validated_data) 
 # the ** unpacks the validated_data dictionary into keyword arguments
 
+class PublicUserSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = User
+    fields = ('id', 'username', 'target_language', 'character')
+
 
