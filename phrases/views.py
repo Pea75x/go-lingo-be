@@ -3,7 +3,6 @@ from .models import *
 from .serializers.common import * 
 import requests
 from django.http import JsonResponse
-from django.conf import settings
 from dotenv import load_dotenv
 import os
 

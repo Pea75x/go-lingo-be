@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'phrases',
-    'users'
+    'users',
+    'rest_framework_simplejwt'
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,24 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_RENDERER_CLASSES': [
+#         'rest_framework.renderers.JSONRenderer',
+#         'rest_framework.renderers.BrowsableAPIRenderer',
+#     ],
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'jwt_auth.authentication.JWTAuthentication',
+#     ],
+# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+}
 
 CORS_ALLOW_ALL_ORIGINS = True
 
