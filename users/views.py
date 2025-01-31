@@ -19,6 +19,6 @@ class RegisterView(APIView):
 
 class CredentialsView(APIView):
     def get(self, request):
-        serializer = PublicUserSerializer(request.user)
+        serializer = PopulatedUserSerializer(request.user)
         return Response(serializer.data)
 

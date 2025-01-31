@@ -3,6 +3,7 @@ from rest_framework import serializers
 import django.contrib.auth.password_validation as validations
 from django.core.exceptions import ValidationError
 from django.contrib.auth.hashers import make_password
+from phrases.serializers.common import * 
 
 User = get_user_model()
 
@@ -34,8 +35,12 @@ class UserSerializer(serializers.ModelSerializer):
 # the ** unpacks the validated_data dictionary into keyword arguments
 
 class PublicUserSerializer(serializers.ModelSerializer):
-  class Meta:
-    model = User
-    fields = ('id', 'username', 'target_language', 'character')
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'target_language', 'character')
 
+class PopulatedUserSerializer(PublicUserSerializer):
+    locations = PopulatedUserLocationSerializer(source='userlocation_set', many=True)
 
+    class Meta(PublicUserSerializer.Meta):
+        fields = PublicUserSerializer.Meta.fields + ('locations',)

@@ -5,6 +5,7 @@ import requests
 from django.http import JsonResponse
 from dotenv import load_dotenv
 import os
+from django.shortcuts import get_object_or_404
 
 # ! LOCATIONS
 # GET ALL LOCATIONS/ CREATE LOCATION
@@ -21,6 +22,10 @@ class LocationById(RetrieveAPIView):
 class LocationUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Location.objects.all()
     serializer_class = LocationSerializer
+
+class UserLocationList(ListCreateAPIView):
+    queryset = UserLocation.objects.all()
+    serializer_class = UserLocationSerializer
 
 # ! PHRASES
 class PhraseList(ListCreateAPIView):
@@ -40,6 +45,12 @@ class getPhraseByLocation(ListCreateAPIView):
 
     def get_queryset(self):
         location_name = self.kwargs['location_name']
+
+        user = self.request.user
+        location = get_object_or_404(Location, name=location_name)
+
+        UserLocation.objects.get_or_create(user=user, location=location)
+
         return Phrase.objects.filter(location__name=location_name) 
 
 def get_locations_by_coordinates(request):
