@@ -10,7 +10,7 @@ The aim of Go-Lingo is to provide the user with relevant phrases based on their 
 
 <img src="./readme/locate-user.png" alt='locate user' width="300" />
 
-1. You start off by providing coordinates which will then retrieve nearby places. I have achived this by using the FourSquare API. This will return a number of places, and each place has a category.
+1. You start off by providing coordinates which will then retrieve nearby places. I have achieved this by using the FourSquare API. This will return a number of places, and each place has a category.
 
 Example of place data returned from FourSquare
 ```json
@@ -75,8 +75,4 @@ Example of response when choosing coffee shop
 ```
 
 ### To do
-1. Create user authentication and login logic
-
-2. Add previous locations to the user model as a foreign key so that the user can practice previous phrases they have used
-
-3. Phrases currently include the english and spanish translations of a sentence as I dont know any more languages unfortunately, but I have created it to be able to add more language fields as the project grows
+1. Phrases currently include the english and spanish translations of a sentence as I dont know any more languages unfortunately, but I have created it to be able to add more language fields as the project grows

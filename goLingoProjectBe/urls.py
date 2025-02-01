@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from phrases.views import *
+from users.views import *
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +31,11 @@ urlpatterns = [
     path('phrases/', PhraseList.as_view()),
     path('phrase/<int:pk>/', PhraseById.as_view()),
     path('phrases/<int:pk>/', PhraseUpdateDestroy.as_view()),
+    path('user-location/', UserLocationList.as_view()),
     path('location-phrases/<str:location_name>/', getPhraseByLocation.as_view()),
-    path('get_locations_by_coordinates/', get_locations_by_coordinates)
+    path('get_locations_by_coordinates/', get_locations_by_coordinates),
+    path('register/', RegisterView.as_view()),
+    path('token/', TokenObtainPairView.as_view()),
+    path('token/refresh/', TokenRefreshView.as_view()),
+    path('user/', CredentialsView.as_view())
 ]
