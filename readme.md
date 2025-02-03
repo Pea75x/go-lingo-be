@@ -74,5 +74,9 @@ Example of response when choosing coffee shop
 ]
 ```
 
+<img src="./readme/phrases.png" alt='chose location' width="300" />
+<img src="./readme/register.png" alt='chose location' width="300" />
+
+
 ### To do
-1. Phrases currently include the english and spanish translations of a sentence as I dont know any more languages unfortunately, but I have created it to be able to add more language fields as the project grows
+1. Phrases currently include the english and spanish translations of a sentence as I dont know any more languages unfortunately, but I have created the table to be able to add more language fields as the project grows
